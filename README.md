@@ -1,22 +1,31 @@
-# Catálogo
+# Catalogo
 
-Página estática para mostrar productos con búsqueda, filtros por categoría y enlace de consulta por WhatsApp.
+Pagina para mostrar productos con busqueda, filtros por categoria, fotos ampliables y enlace de consulta por WhatsApp.
 
-## Editar productos
+## Configurar Supabase para subir fotos
 
-Los productos se editan en `productos.js`.
+1. Crea un proyecto en Supabase.
+2. En `SQL Editor`, ejecuta el contenido de `catalogo-schema.sql`.
+3. En `Authentication` > `Users`, crea tu usuario administrador.
+4. En `Project Settings` > `Data API`, copia la URL del proyecto.
+5. En `Project Settings` > `API Keys`, copia la clave publica `publishable`.
+6. Pega esos datos en `productos.js`.
 
-Actualiza también el número de WhatsApp en:
+La clave publica puede estar en el navegador. No uses una clave `secret` ni `service_role`.
+
+## Editar configuracion
+
+Actualiza el numero de WhatsApp en `productos.js`:
 
 ```js
 window.CATALOG_CONFIG = {
   whatsapp: "59170000000",
-  negocio: "Mi catálogo",
+  negocio: "Mi catalogo",
+  supabaseUrl: "https://TU-PROYECTO.supabase.co",
+  supabasePublishableKey: "TU-CLAVE-PUBLICA",
 };
 ```
 
-El número debe incluir código de país, sin `+`, espacios ni guiones.
+El numero debe incluir codigo de pais, sin `+`, espacios ni guiones.
 
-## Publicar
-
-Este sitio no necesita instalación ni compilación. Puede publicarse en Cloudflare Pages, Cloudflare Workers Static Assets, GitHub Pages o Netlify.
+Si Supabase no esta configurado, la pagina mostrara los productos de ejemplo que estan en `productos.js`.

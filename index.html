@@ -3,30 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catálogo</title>
+    <title>Catalogo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero">
       <nav class="topbar">
-        <a class="brand" href="#">Catálogo</a>
-        <a class="whatsapp-link" id="header-whatsapp" href="#" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+        <a class="brand" href="#">Catalogo</a>
+        <div class="topbar-actions">
+          <button class="admin-button" id="admin-open-button" type="button">Administrar</button>
+          <a class="whatsapp-link" id="header-whatsapp" href="#" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+        </div>
       </nav>
       <div class="hero-content">
         <p class="eyebrow">Productos seleccionados</p>
-        <h1>Encuentra lo que necesitas de forma rápida y simple.</h1>
-        <p class="subtitle">Explora el catálogo, filtra por categoría y consulta directamente por WhatsApp.</p>
+        <h1>Encuentra lo que necesitas de forma rapida y simple.</h1>
+        <p class="subtitle">Explora el catalogo, filtra por categoria y consulta directamente por WhatsApp.</p>
       </div>
     </header>
 
     <main>
-      <section class="filters" aria-label="Filtros del catálogo">
+      <section class="filters" aria-label="Filtros del catalogo">
         <label>
           <span>Buscar producto</span>
-          <input id="search-input" type="search" placeholder="Nombre o descripción" />
+          <input id="search-input" type="search" placeholder="Nombre o descripcion" />
         </label>
         <label>
-          <span>Categoría</span>
+          <span>Categoria</span>
           <select id="category-filter">
             <option value="">Todas</option>
           </select>
@@ -35,7 +38,7 @@
 
       <section class="catalog-header">
         <div>
-          <p class="eyebrow">Catálogo</p>
+          <p class="eyebrow">Catalogo</p>
           <h2>Productos disponibles</h2>
         </div>
         <p id="result-count">0 productos</p>
@@ -45,6 +48,66 @@
       <p class="empty-state" id="empty-state" hidden>No encontramos productos con esos filtros.</p>
     </main>
 
+    <dialog id="image-dialog" class="image-dialog">
+      <div class="dialog-heading">
+        <h2 id="image-preview-title">Producto</h2>
+        <button class="icon-button" type="button" data-close-dialog="image-dialog" aria-label="Cerrar">x</button>
+      </div>
+      <img id="image-preview" alt="" />
+    </dialog>
+
+    <dialog id="admin-dialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">Administrador</p>
+          <h2>Subir producto</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-dialog="admin-dialog" aria-label="Cerrar">x</button>
+      </div>
+
+      <form id="login-form" class="admin-form">
+        <label>
+          <span>Correo</span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <label>
+          <span>Contrasena</span>
+          <input name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <p class="form-error" id="login-error"></p>
+        <button class="button" type="submit">Ingresar</button>
+      </form>
+
+      <form id="admin-form" class="admin-form" hidden>
+        <label>
+          <span>Nombre</span>
+          <input id="product-name" required maxlength="120" />
+        </label>
+        <label>
+          <span>Categoria</span>
+          <input id="product-category" required maxlength="80" />
+        </label>
+        <label>
+          <span>Precio (Bs)</span>
+          <input id="product-price" type="number" min="0" step="0.01" required />
+        </label>
+        <label>
+          <span>Foto</span>
+          <input id="product-image" type="file" accept="image/*" required />
+        </label>
+        <label>
+          <span>Descripcion</span>
+          <textarea id="product-description" rows="3" maxlength="500" required></textarea>
+        </label>
+        <p class="form-error" id="admin-error"></p>
+        <div class="admin-actions">
+          <button class="button" type="submit">Guardar producto</button>
+          <button class="admin-button" id="logout-button" type="button" hidden>Salir</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="productos.js"></script>
     <script src="app.js"></script>
   </body>

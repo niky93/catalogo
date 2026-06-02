@@ -47,8 +47,12 @@ main {
 }
 
 .whatsapp-link,
+.admin-button,
 .button {
   border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
   font-weight: 800;
   text-decoration: none;
 }
@@ -56,6 +60,19 @@ main {
 .whatsapp-link {
   background: #25d366;
   color: #062b17;
+  padding: 11px 16px;
+}
+
+.topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.admin-button {
+  background: rgb(255 255 255 / 16%);
+  color: #ffffff;
   padding: 11px 16px;
 }
 
@@ -132,7 +149,8 @@ label span {
 }
 
 input,
-select {
+select,
+textarea {
   border: 1px solid #d8c7b3;
   border-radius: 14px;
   color: #202638;
@@ -141,9 +159,14 @@ select {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   border-color: #c2410c;
   outline: 3px solid rgb(194 65 12 / 16%);
+}
+
+textarea {
+  resize: vertical;
 }
 
 .catalog-header h2 {
@@ -172,13 +195,37 @@ select:focus {
 .product-image {
   aspect-ratio: 4 / 3;
   background: #eadfd2;
+  border: 0;
+  cursor: zoom-in;
+  display: block;
   overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
 }
 
 .product-image img {
   height: 100%;
   object-fit: cover;
   width: 100%;
+}
+
+.product-image span {
+  background: rgb(17 24 39 / 74%);
+  border-radius: 999px;
+  bottom: 12px;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  opacity: 0;
+  padding: 8px 10px;
+  position: absolute;
+  right: 12px;
+  transition: opacity 0.18s ease;
+}
+
+.product-image:hover span {
+  opacity: 1;
 }
 
 .product-body {
@@ -230,6 +277,64 @@ select:focus {
   font-weight: 800;
   padding: 30px;
   text-align: center;
+}
+
+dialog {
+  border: 0;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgb(15 23 42 / 26%);
+  max-width: min(620px, calc(100% - 24px));
+  padding: 22px;
+  width: 100%;
+}
+
+dialog::backdrop {
+  background: rgb(15 23 42 / 52%);
+}
+
+.dialog-heading,
+.admin-actions {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.icon-button {
+  background: transparent;
+  border: 0;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 1.7rem;
+}
+
+.image-dialog {
+  max-width: min(960px, calc(100% - 24px));
+}
+
+.image-dialog img {
+  border-radius: 16px;
+  display: block;
+  margin-top: 16px;
+  max-height: 78vh;
+  object-fit: contain;
+  width: 100%;
+}
+
+.admin-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.admin-form .admin-button {
+  background: #e7ded4;
+  color: #202638;
+}
+
+.form-error {
+  color: #b91c1c;
+  min-height: 20px;
 }
 
 @media (max-width: 860px) {
