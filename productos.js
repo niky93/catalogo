@@ -1,37 +1,37 @@
 window.CATALOG_CONFIG = {
   whatsapp: "59170000000",
-  negocio: "Mi catalogo",
+  negocio: "Anzuelo & Llama",
   supabaseUrl: "https://TU-PROYECTO.supabase.co",
   supabasePublishableKey: "TU-CLAVE-PUBLICA",
 };
 
 window.PRODUCTOS = [
   {
-    nombre: "Set de cocina premium",
-    categoria: "Cocina",
+    nombre: "Caja de anzuelos surtidos",
+    categoria: "Pesca",
+    precio: 65,
+    descripcion: "Anzuelos de distintos tamanos para preparar la salida al rio con todo a mano.",
+    imagen: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    nombre: "Cana telescopica",
+    categoria: "Pesca",
     precio: 180,
-    descripcion: "Producto practico para el uso diario, con buena presentacion y excelente acabado.",
-    imagen: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80",
+    descripcion: "Compacta, resistente y facil de transportar para pesca recreativa.",
+    imagen: "https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=900&q=80",
   },
   {
-    nombre: "Organizador multiuso",
-    categoria: "Hogar",
+    nombre: "Parrilla portatil",
+    categoria: "Camping",
+    precio: 220,
+    descripcion: "Ideal para cocinar junto al fuego despues de una jornada de pesca.",
+    imagen: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    nombre: "Termo acero inoxidable",
+    categoria: "Camping",
     precio: 95,
-    descripcion: "Ideal para mantener espacios ordenados sin perder estilo.",
-    imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    nombre: "Botella termica",
-    categoria: "Accesorios",
-    precio: 75,
-    descripcion: "Mantiene bebidas frias o calientes por mas tiempo. Diseno comodo y resistente.",
+    descripcion: "Mantiene bebidas calientes para acompanar madrugadas frias a la orilla del rio.",
     imagen: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    nombre: "Lampara decorativa",
-    categoria: "Decoracion",
-    precio: 130,
-    descripcion: "Aporta una luz calida y moderna para dormitorios, salas o escritorios.",
-    imagen: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
   },
 ];

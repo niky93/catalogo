@@ -1,8 +1,8 @@
 :root {
   color-scheme: light;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #202638;
-  background: #f7f2eb;
+  color: #13263a;
+  background: #f4f7f8;
 }
 
 * {
@@ -19,8 +19,8 @@ body {
 
 .hero {
   background:
-    linear-gradient(135deg, rgb(30 41 59 / 86%), rgb(124 45 18 / 76%)),
-    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80");
+    linear-gradient(135deg, rgb(4 47 74 / 90%), rgb(194 65 12 / 78%)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
   background-position: center;
   background-size: cover;
   color: #ffffff;
@@ -43,11 +43,25 @@ main {
 }
 
 .brand {
+  align-items: center;
   color: #ffffff;
+  display: inline-flex;
   font-size: 1.15rem;
+  gap: 10px;
   font-weight: 900;
   letter-spacing: 0.02em;
   text-decoration: none;
+}
+
+.brand-mark {
+  align-items: center;
+  background: linear-gradient(135deg, #0284c7, #f97316);
+  border: 2px solid rgb(255 255 255 / 70%);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
 }
 
 .whatsapp-link,
@@ -87,7 +101,7 @@ main {
 }
 
 .eyebrow {
-  color: #a16207;
+  color: #0f6b93;
   font-size: 0.74rem;
   font-weight: 900;
   letter-spacing: 0.15em;
@@ -96,7 +110,7 @@ main {
 }
 
 .hero .eyebrow {
-  color: #fde68a;
+  color: #fed7aa;
 }
 
 h1,
@@ -133,9 +147,9 @@ main {
 
 .filters {
   background: #ffffff;
-  border: 1px solid #eadfd2;
+  border: 1px solid #dbe8ee;
   border-radius: 24px;
-  box-shadow: 0 12px 30px rgb(120 80 44 / 10%);
+  box-shadow: 0 12px 30px rgb(8 47 73 / 10%);
   margin-top: -72px;
   padding: 20px;
 }
@@ -147,7 +161,7 @@ label {
 }
 
 label span {
-  color: #7c5b40;
+  color: #1f5f7a;
   font-size: 0.82rem;
   font-weight: 800;
 }
@@ -166,7 +180,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: #c2410c;
-  outline: 3px solid rgb(194 65 12 / 16%);
+  outline: 3px solid rgb(14 116 144 / 16%);
 }
 
 textarea {
@@ -178,7 +192,7 @@ textarea {
 }
 
 #result-count {
-  color: #7c5b40;
+  color: #1f5f7a;
   font-weight: 800;
 }
 
@@ -190,15 +204,15 @@ textarea {
 
 .product-card {
   background: #ffffff;
-  border: 1px solid #eadfd2;
+  border: 1px solid #dbe8ee;
   border-radius: 22px;
-  box-shadow: 0 10px 24px rgb(120 80 44 / 8%);
+  box-shadow: 0 10px 24px rgb(8 47 73 / 8%);
   overflow: hidden;
 }
 
 .product-image {
   aspect-ratio: 4 / 3;
-  background: #eadfd2;
+  background: #dbe8ee;
   border: 0;
   cursor: zoom-in;
   display: block;
@@ -239,7 +253,7 @@ textarea {
 }
 
 .category {
-  color: #c2410c;
+  color: #ea580c;
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -265,19 +279,19 @@ textarea {
 }
 
 .price {
-  color: #7c2d12;
+  color: #0f6b93;
   font-size: 1.25rem;
   font-weight: 900;
 }
 
 .button {
-  background: #202638;
+  background: #0f3f5a;
   color: #ffffff;
   padding: 10px 13px;
 }
 
 .empty-state {
-  color: #7c5b40;
+  color: #1f5f7a;
   font-weight: 800;
   padding: 30px;
   text-align: center;
@@ -343,8 +357,8 @@ dialog::backdrop {
 
 .admin-page {
   background:
-    linear-gradient(135deg, rgb(30 41 59 / 86%), rgb(124 45 18 / 76%)),
-    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80");
+    linear-gradient(135deg, rgb(4 47 74 / 90%), rgb(194 65 12 / 78%)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
   background-position: center;
   background-size: cover;
   min-height: 100vh;
@@ -358,7 +372,7 @@ dialog::backdrop {
 
 .admin-card {
   background: #ffffff;
-  border: 1px solid #eadfd2;
+  border: 1px solid #dbe8ee;
   border-radius: 24px;
   box-shadow: 0 24px 60px rgb(15 23 42 / 22%);
   max-width: 680px;

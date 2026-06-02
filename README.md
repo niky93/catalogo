@@ -1,6 +1,8 @@
-# Catalogo
+# Anzuelo & Llama
 
-Pagina para mostrar productos con busqueda, filtros por categoria, fotos ampliables y enlace de consulta por WhatsApp.
+Catalogo publico para Anzuelo & Llama.
+
+Lema: Pasion por el rio, calor de hogar.
 
 ## Configurar Supabase para subir fotos
 
