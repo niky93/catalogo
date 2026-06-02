@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar">
+        <a class="brand" href="#">Catálogo</a>
+        <a class="whatsapp-link" id="header-whatsapp" href="#" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+      </nav>
+      <div class="hero-content">
+        <p class="eyebrow">Productos seleccionados</p>
+        <h1>Encuentra lo que necesitas de forma rápida y simple.</h1>
+        <p class="subtitle">Explora el catálogo, filtra por categoría y consulta directamente por WhatsApp.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="filters" aria-label="Filtros del catálogo">
+        <label>
+          <span>Buscar producto</span>
+          <input id="search-input" type="search" placeholder="Nombre o descripción" />
+        </label>
+        <label>
+          <span>Categoría</span>
+          <select id="category-filter">
+            <option value="">Todas</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="catalog-header">
+        <div>
+          <p class="eyebrow">Catálogo</p>
+          <h2>Productos disponibles</h2>
+        </div>
+        <p id="result-count">0 productos</p>
+      </section>
+
+      <section class="product-grid" id="product-grid" aria-live="polite"></section>
+      <p class="empty-state" id="empty-state" hidden>No encontramos productos con esos filtros.</p>
+    </main>
+
+    <script src="productos.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

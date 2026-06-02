@@ -1,0 +1,274 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #202638;
+  background: #f7f2eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.hero {
+  background:
+    linear-gradient(135deg, rgb(30 41 59 / 86%), rgb(124 45 18 / 76%)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80");
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+  min-height: 420px;
+  padding: 24px;
+}
+
+.topbar,
+.hero-content,
+main {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+}
+
+.topbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.whatsapp-link,
+.button {
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.whatsapp-link {
+  background: #25d366;
+  color: #062b17;
+  padding: 11px 16px;
+}
+
+.hero-content {
+  display: grid;
+  gap: 14px;
+  padding-top: 96px;
+}
+
+.eyebrow {
+  color: #a16207;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  color: #fde68a;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 7vw, 4.9rem);
+  line-height: 0.95;
+  max-width: 850px;
+}
+
+.subtitle {
+  color: #f8fafc;
+  font-size: 1.08rem;
+  max-width: 620px;
+}
+
+main {
+  display: grid;
+  gap: 24px;
+  padding: 28px 24px 48px;
+}
+
+.filters,
+.catalog-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.filters {
+  background: #ffffff;
+  border: 1px solid #eadfd2;
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgb(120 80 44 / 10%);
+  margin-top: -72px;
+  padding: 20px;
+}
+
+label {
+  display: grid;
+  flex: 1;
+  gap: 8px;
+}
+
+label span {
+  color: #7c5b40;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+input,
+select {
+  border: 1px solid #d8c7b3;
+  border-radius: 14px;
+  color: #202638;
+  font: inherit;
+  padding: 13px 14px;
+}
+
+input:focus,
+select:focus {
+  border-color: #c2410c;
+  outline: 3px solid rgb(194 65 12 / 16%);
+}
+
+.catalog-header h2 {
+  font-size: clamp(1.7rem, 5vw, 2.5rem);
+}
+
+#result-count {
+  color: #7c5b40;
+  font-weight: 800;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid #eadfd2;
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgb(120 80 44 / 8%);
+  overflow: hidden;
+}
+
+.product-image {
+  aspect-ratio: 4 / 3;
+  background: #eadfd2;
+  overflow: hidden;
+}
+
+.product-image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.product-body {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.category {
+  color: #c2410c;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.product-body h3 {
+  color: #111827;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.description {
+  color: #5f6b7a;
+  line-height: 1.45;
+}
+
+.price-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.price {
+  color: #7c2d12;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.button {
+  background: #202638;
+  color: #ffffff;
+  padding: 10px 13px;
+}
+
+.empty-state {
+  color: #7c5b40;
+  font-weight: 800;
+  padding: 30px;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 520px;
+  }
+
+  .topbar,
+  .filters,
+  .catalog-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-content {
+    padding-top: 72px;
+  }
+
+  .filters {
+    margin-top: -96px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button,
+  .whatsapp-link {
+    text-align: center;
+  }
+}
