@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar catalogo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-card">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Administrador</p>
+            <h1>Subir producto</h1>
+          </div>
+          <a class="button secondary-button" href="index.html">Ver catalogo</a>
+        </div>
+
+        <form id="login-form" class="admin-form">
+          <label>
+            <span>Correo</span>
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Contrasena</span>
+            <input name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <p class="form-error" id="login-error"></p>
+          <button class="button" type="submit">Ingresar</button>
+        </form>
+
+        <form id="admin-form" class="admin-form" hidden>
+          <label>
+            <span>Nombre</span>
+            <input id="product-name" required maxlength="120" />
+          </label>
+          <label>
+            <span>Categoria</span>
+            <input id="product-category" required maxlength="80" />
+          </label>
+          <label>
+            <span>Precio (Bs)</span>
+            <input id="product-price" type="number" min="0" step="0.01" required />
+          </label>
+          <label>
+            <span>Foto</span>
+            <input id="product-image" type="file" accept="image/*" required />
+          </label>
+          <label>
+            <span>Descripcion</span>
+            <textarea id="product-description" rows="3" maxlength="500" required></textarea>
+          </label>
+          <p class="form-error" id="admin-error"></p>
+          <div class="admin-actions">
+            <button class="button" type="submit">Guardar producto</button>
+            <button class="admin-button" id="logout-button" type="button" hidden>Salir</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="productos.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

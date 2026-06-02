@@ -13,6 +13,11 @@ Pagina para mostrar productos con busqueda, filtros por categoria, fotos ampliab
 
 La clave publica puede estar en el navegador. No uses una clave `secret` ni `service_role`.
 
+## Vistas
+
+- `index.html`: catalogo publico. No muestra boton de administracion.
+- `admin.html`: panel privado para iniciar sesion y subir productos con foto.
+
 ## Editar configuracion
 
 Actualiza el numero de WhatsApp en `productos.js`:

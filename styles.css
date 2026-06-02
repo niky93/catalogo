@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
 }
@@ -335,6 +339,36 @@ dialog::backdrop {
 .form-error {
   color: #b91c1c;
   min-height: 20px;
+}
+
+.admin-page {
+  background:
+    linear-gradient(135deg, rgb(30 41 59 / 86%), rgb(124 45 18 / 76%)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80");
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.admin-shell {
+  min-height: 100vh;
+  padding-block: 42px;
+  place-items: center;
+}
+
+.admin-card {
+  background: #ffffff;
+  border: 1px solid #eadfd2;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgb(15 23 42 / 22%);
+  max-width: 680px;
+  padding: 24px;
+  width: min(100%, 680px);
+}
+
+.secondary-button {
+  background: #e7ded4;
+  color: #202638;
 }
 
 @media (max-width: 860px) {

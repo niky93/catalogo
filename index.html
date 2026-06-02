@@ -10,10 +10,7 @@
     <header class="hero">
       <nav class="topbar">
         <a class="brand" href="#">Catalogo</a>
-        <div class="topbar-actions">
-          <button class="admin-button" id="admin-open-button" type="button">Administrar</button>
-          <a class="whatsapp-link" id="header-whatsapp" href="#" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
-        </div>
+        <a class="whatsapp-link" id="header-whatsapp" href="#" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
       </nav>
       <div class="hero-content">
         <p class="eyebrow">Productos seleccionados</p>
@@ -54,57 +51,6 @@
         <button class="icon-button" type="button" data-close-dialog="image-dialog" aria-label="Cerrar">x</button>
       </div>
       <img id="image-preview" alt="" />
-    </dialog>
-
-    <dialog id="admin-dialog">
-      <div class="dialog-heading">
-        <div>
-          <p class="eyebrow">Administrador</p>
-          <h2>Subir producto</h2>
-        </div>
-        <button class="icon-button" type="button" data-close-dialog="admin-dialog" aria-label="Cerrar">x</button>
-      </div>
-
-      <form id="login-form" class="admin-form">
-        <label>
-          <span>Correo</span>
-          <input name="email" type="email" autocomplete="email" required />
-        </label>
-        <label>
-          <span>Contrasena</span>
-          <input name="password" type="password" autocomplete="current-password" required />
-        </label>
-        <p class="form-error" id="login-error"></p>
-        <button class="button" type="submit">Ingresar</button>
-      </form>
-
-      <form id="admin-form" class="admin-form" hidden>
-        <label>
-          <span>Nombre</span>
-          <input id="product-name" required maxlength="120" />
-        </label>
-        <label>
-          <span>Categoria</span>
-          <input id="product-category" required maxlength="80" />
-        </label>
-        <label>
-          <span>Precio (Bs)</span>
-          <input id="product-price" type="number" min="0" step="0.01" required />
-        </label>
-        <label>
-          <span>Foto</span>
-          <input id="product-image" type="file" accept="image/*" required />
-        </label>
-        <label>
-          <span>Descripcion</span>
-          <textarea id="product-description" rows="3" maxlength="500" required></textarea>
-        </label>
-        <p class="form-error" id="admin-error"></p>
-        <div class="admin-actions">
-          <button class="button" type="submit">Guardar producto</button>
-          <button class="admin-button" id="logout-button" type="button" hidden>Salir</button>
-        </div>
-      </form>
     </dialog>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
