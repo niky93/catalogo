@@ -53,15 +53,22 @@ main {
   text-decoration: none;
 }
 
-.brand-mark {
-  align-items: center;
-  background: linear-gradient(135deg, #0284c7, #f97316);
+.brand-logo {
+  background: #ffffff;
   border: 2px solid rgb(255 255 255 / 70%);
   border-radius: 999px;
-  display: inline-flex;
-  height: 42px;
-  justify-content: center;
-  width: 42px;
+  height: 54px;
+  object-fit: contain;
+  padding: 3px;
+  width: 54px;
+}
+
+.admin-logo {
+  display: block;
+  height: 92px;
+  margin-bottom: 14px;
+  object-fit: contain;
+  width: 92px;
 }
 
 .whatsapp-link,
