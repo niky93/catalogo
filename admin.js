@@ -108,16 +108,21 @@ function renderProducts() {
   elements.adminProductList.innerHTML = state.products
     .map(
       (product) => `
-        <article class="admin-product-row">
+        <article class="admin-product-row ${product.active ? "" : "is-inactive"}">
           <img src="${escapeHtml(product.image_url)}" alt="${escapeHtml(product.name)}" />
           <div class="admin-product-info">
-            <h3>${escapeHtml(product.name)}</h3>
+            <div class="admin-product-title">
+              <h3>${escapeHtml(product.name)}</h3>
+              <span class="status-pill ${product.active ? "" : "inactive-pill"}">${product.active ? "Activo" : "Inactivo"}</span>
+            </div>
             <p>${escapeHtml(product.category)} &middot; ${formatPrice(product.price)}</p>
             <p>${escapeHtml(product.description)}</p>
           </div>
           <div class="admin-row-actions">
             <button class="admin-button" type="button" data-edit-product="${escapeHtml(product.id)}">Editar</button>
-            <button class="admin-button danger-button" type="button" data-delete-product="${escapeHtml(product.id)}">Eliminar</button>
+            <button class="admin-button ${product.active ? "danger-button" : "success-button"}" type="button" data-toggle-product="${escapeHtml(product.id)}">
+              ${product.active ? "Ocultar" : "Activar"}
+            </button>
           </div>
         </article>
       `,
@@ -193,15 +198,17 @@ function handleEditProduct(productId) {
   elements.adminForm.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-async function handleDeleteProduct(productId) {
+async function handleToggleProduct(productId) {
   const product = state.products.find((item) => item.id === productId);
   if (!product) return;
 
-  const confirmed = window.confirm(`Eliminar "${product.name}"? Esta accion no se puede deshacer.`);
+  const nextActive = !product.active;
+  const action = nextActive ? "activar" : "ocultar";
+  const confirmed = window.confirm(`Quieres ${action} "${product.name}"?`);
   if (!confirmed) return;
 
   showError(elements.managerError);
-  const { error } = await db.from("catalog_products").delete().eq("id", productId);
+  const { error } = await db.from("catalog_products").update({ active: nextActive }).eq("id", productId);
   if (error) {
     showError(elements.managerError, error.message);
     return;
@@ -220,9 +227,9 @@ elements.cancelEditButton.addEventListener("click", () => {
 elements.refreshProductsButton.addEventListener("click", loadProducts);
 elements.adminProductList.addEventListener("click", (event) => {
   const editButton = event.target.closest("[data-edit-product]");
-  const deleteButton = event.target.closest("[data-delete-product]");
+  const toggleButton = event.target.closest("[data-toggle-product]");
   if (editButton) handleEditProduct(editButton.dataset.editProduct);
-  if (deleteButton) handleDeleteProduct(deleteButton.dataset.deleteProduct);
+  if (toggleButton) handleToggleProduct(toggleButton.dataset.toggleProduct);
 });
 elements.logoutButton.addEventListener("click", async () => {
   await db.auth.signOut();

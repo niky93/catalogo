@@ -449,10 +449,26 @@ dialog::backdrop {
   width: 86px;
 }
 
+.admin-product-row.is-inactive {
+  background: #f1f5f9;
+  opacity: 0.78;
+}
+
+.admin-product-row.is-inactive img {
+  filter: grayscale(0.7);
+}
+
 .admin-product-info {
   display: grid;
   gap: 5px;
   min-width: 0;
+}
+
+.admin-product-title {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .admin-product-info h3 {
@@ -480,6 +496,26 @@ dialog::backdrop {
 .danger-button {
   background: #fee2e2 !important;
   color: #991b1b !important;
+}
+
+.success-button {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+}
+
+.status-pill {
+  background: #dcfce7;
+  border-radius: 999px;
+  color: #166534;
+  font-size: 0.72rem;
+  font-weight: 900;
+  padding: 5px 8px;
+  text-transform: uppercase;
+}
+
+.inactive-pill {
+  background: #e2e8f0;
+  color: #475569;
 }
 
 .admin-empty-state {
