@@ -359,6 +359,11 @@ dialog::backdrop {
   justify-content: flex-end;
 }
 
+.admin-form-shortcuts {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .admin-form .admin-button {
   background: #e7ded4;
   color: #202638;
