@@ -352,6 +352,13 @@ dialog::backdrop {
   margin-top: 18px;
 }
 
+.admin-top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 .admin-form .admin-button {
   background: #e7ded4;
   color: #202638;
@@ -511,6 +518,7 @@ dialog::backdrop {
 
   .dialog-heading,
   .admin-actions,
+  .admin-top-actions,
   .manager-heading {
     align-items: stretch;
     flex-direction: column;
