@@ -459,6 +459,12 @@ dialog::backdrop {
   gap: 8px;
 }
 
+.product-manager .admin-button,
+.admin-row-actions .admin-button {
+  background: #e7ded4;
+  color: #202638;
+}
+
 .danger-button {
   background: #fee2e2 !important;
   color: #991b1b !important;
