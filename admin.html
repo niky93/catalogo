@@ -13,7 +13,7 @@
           <div>
             <img class="admin-logo" src="logo.png" alt="Logo de Anzuelo & Llama" />
             <p class="eyebrow">Anzuelo & Llama</p>
-            <h1>Subir producto</h1>
+            <h1>Administrar productos</h1>
           </div>
           <a class="button secondary-button" href="index.html">Ver catalogo</a>
         </div>
@@ -32,6 +32,7 @@
         </form>
 
         <form id="admin-form" class="admin-form" hidden>
+          <input id="product-id" type="hidden" />
           <label>
             <span>Nombre</span>
             <input id="product-name" required maxlength="120" />
@@ -54,10 +55,24 @@
           </label>
           <p class="form-error" id="admin-error"></p>
           <div class="admin-actions">
-            <button class="button" type="submit">Guardar producto</button>
+            <button class="button" id="save-product-button" type="submit">Guardar producto</button>
+            <button class="admin-button" id="cancel-edit-button" type="button" hidden>Cancelar edicion</button>
             <button class="admin-button" id="logout-button" type="button" hidden>Salir</button>
           </div>
         </form>
+
+        <section id="product-manager" class="product-manager" hidden>
+          <div class="manager-heading">
+            <div>
+              <p class="eyebrow">Inventario</p>
+              <h2>Productos cargados</h2>
+            </div>
+            <button class="admin-button" id="refresh-products-button" type="button">Actualizar</button>
+          </div>
+          <p class="form-error" id="manager-error"></p>
+          <div class="admin-product-list" id="admin-product-list"></div>
+          <p class="empty-state admin-empty-state" id="admin-empty-state" hidden>No hay productos cargados todavia.</p>
+        </section>
       </section>
     </main>
 

@@ -382,14 +382,90 @@ dialog::backdrop {
   border: 1px solid #dbe8ee;
   border-radius: 24px;
   box-shadow: 0 24px 60px rgb(15 23 42 / 22%);
-  max-width: 680px;
+  max-width: 880px;
   padding: 24px;
-  width: min(100%, 680px);
+  width: min(100%, 880px);
 }
 
 .secondary-button {
   background: #e7ded4;
   color: #202638;
+}
+
+.product-manager {
+  border-top: 1px solid #dbe8ee;
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 22px;
+}
+
+.manager-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.manager-heading h2 {
+  font-size: 1.35rem;
+  margin: 4px 0 0;
+}
+
+.admin-product-list {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-product-row {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #dbe8ee;
+  border-radius: 18px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 86px 1fr auto;
+  padding: 12px;
+}
+
+.admin-product-row img {
+  aspect-ratio: 1;
+  background: #dbe8ee;
+  border-radius: 14px;
+  height: 86px;
+  object-fit: cover;
+  width: 86px;
+}
+
+.admin-product-info {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.admin-product-info h3 {
+  color: #111827;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.admin-product-info p {
+  color: #5f6b7a;
+  line-height: 1.35;
+}
+
+.admin-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.danger-button {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+.admin-empty-state {
+  padding: 12px;
 }
 
 @media (max-width: 860px) {
@@ -425,6 +501,31 @@ dialog::backdrop {
   .price-row {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .dialog-heading,
+  .admin-actions,
+  .manager-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-product-row {
+    align-items: stretch;
+    grid-template-columns: 72px 1fr;
+  }
+
+  .admin-product-row img {
+    height: 72px;
+    width: 72px;
+  }
+
+  .admin-row-actions {
+    grid-column: 1 / -1;
+  }
+
+  .admin-row-actions .admin-button {
+    flex: 1;
   }
 
   .button,
