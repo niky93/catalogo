@@ -1,5 +1,5 @@
 window.CATALOG_CONFIG = {
-  whatsapp: "59170000000",
+  whatsapp: "59176023585",
   negocio: "Anzuelo & Llama",
   supabaseUrl: "https://mjqhaoailhvsvbngrbcv.supabase.co",
   supabasePublishableKey: "sb_publishable_kTNOYpVAKVFb-o0VOlL7MQ_P3tsfuHl",
