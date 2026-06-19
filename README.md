@@ -36,3 +36,11 @@ window.CATALOG_CONFIG = {
 El numero debe incluir codigo de pais, sin `+`, espacios ni guiones.
 
 Si Supabase no esta configurado, la pagina mostrara los productos de ejemplo que estan en `productos.js`.
+
+## Habilitar varias fotos por producto
+
+Si la base de datos ya existia antes de esta funcionalidad, ejecuta una vez el contenido de
+`catalogo-multimagen.sql` en `Supabase` > `SQL Editor`.
+
+Los productos existentes conservaran su foto actual. Desde `admin.html` se podran agregar o
+quitar varias fotos al editar un producto.

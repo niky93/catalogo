@@ -6,9 +6,17 @@ create table if not exists public.catalog_products (
   description text not null default '' check (char_length(description) <= 500),
   price numeric(12, 2) not null default 0 check (price >= 0),
   image_url text not null,
+  image_urls text[] not null default '{}',
   active boolean not null default true,
   created_at timestamptz not null default now()
 );
+
+alter table public.catalog_products
+  add column if not exists image_urls text[] not null default '{}';
+
+update public.catalog_products
+set image_urls = array[image_url]
+where coalesce(array_length(image_urls, 1), 0) = 0;
 
 alter table public.catalog_products enable row level security;
 

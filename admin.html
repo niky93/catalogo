@@ -51,9 +51,13 @@
             <input id="product-price" type="number" min="0" step="0.01" required />
           </label>
           <label>
-            <span>Foto</span>
-            <input id="product-image" type="file" accept="image/*" required />
+            <span>Fotos</span>
+            <input id="product-image" type="file" accept="image/*" multiple required />
           </label>
+          <div id="current-images-field" hidden>
+            <span class="field-label">Fotos actuales</span>
+            <div class="current-images" id="current-images"></div>
+          </div>
           <label>
             <span>Descripcion</span>
             <textarea id="product-description" rows="3" maxlength="500" required></textarea>

@@ -6,13 +6,15 @@ const hasSupabase =
   !config.supabaseUrl.includes("TU-PROYECTO");
 const db = hasSupabase ? window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey) : null;
 
-const state = { products: [], session: null };
+const state = { editingImages: [], products: [], session: null };
 const elements = {
   adminError: document.querySelector("#admin-error"),
   adminEmptyState: document.querySelector("#admin-empty-state"),
   adminProductList: document.querySelector("#admin-product-list"),
   adminForm: document.querySelector("#admin-form"),
   cancelEditButton: document.querySelector("#cancel-edit-button"),
+  currentImages: document.querySelector("#current-images"),
+  currentImagesField: document.querySelector("#current-images-field"),
   loginError: document.querySelector("#login-error"),
   loginForm: document.querySelector("#login-form"),
   logoutButton: document.querySelector("#logout-button"),
@@ -49,8 +51,29 @@ function formatPrice(price) {
   }).format(Number(price || 0));
 }
 
+function getProductImages(product) {
+  const images = Array.isArray(product?.image_urls) ? product.image_urls.filter(Boolean) : [];
+  if (product?.image_url && !images.includes(product.image_url)) images.unshift(product.image_url);
+  return images;
+}
+
+function renderCurrentImages() {
+  elements.currentImages.innerHTML = state.editingImages
+    .map(
+      (imageUrl, index) => `
+        <div class="current-image">
+          <img src="${escapeHtml(imageUrl)}" alt="Foto ${index + 1}" />
+          <button type="button" data-remove-image="${index}" aria-label="Quitar foto ${index + 1}">x</button>
+        </div>
+      `,
+    )
+    .join("");
+  elements.currentImagesField.hidden = !elements.productId.value;
+}
+
 function setEditMode(product = null) {
   const isEditing = Boolean(product);
+  state.editingImages = getProductImages(product);
   elements.productId.value = product?.id || "";
   elements.productName.value = product?.name || "";
   elements.productCategory.value = product?.category || "";
@@ -60,6 +83,7 @@ function setEditMode(product = null) {
   elements.productImage.required = !isEditing;
   elements.saveProductButton.textContent = isEditing ? "Guardar cambios" : "Guardar producto";
   elements.cancelEditButton.hidden = !isEditing;
+  renderCurrentImages();
   showError(elements.adminError);
 }
 
@@ -104,6 +128,10 @@ async function uploadImage(file) {
   return data.publicUrl;
 }
 
+async function uploadImages(files) {
+  return Promise.all(files.map(uploadImage));
+}
+
 function renderProducts() {
   elements.adminProductList.innerHTML = state.products
     .map(
@@ -116,6 +144,7 @@ function renderProducts() {
               <span class="status-pill ${product.active ? "" : "inactive-pill"}">${product.active ? "Activo" : "Inactivo"}</span>
             </div>
             <p>${escapeHtml(product.category)} &middot; ${formatPrice(product.price)}</p>
+            <p>${getProductImages(product).length} ${getProductImages(product).length === 1 ? "foto" : "fotos"}</p>
             <p>${escapeHtml(product.description)}</p>
           </div>
           <div class="admin-row-actions">
@@ -135,7 +164,7 @@ async function loadProducts() {
   showError(elements.managerError);
   const { data, error } = await db
     .from("catalog_products")
-    .select("id,name,category,description,price,image_url,active,created_at")
+    .select("*")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -147,13 +176,14 @@ async function loadProducts() {
   renderProducts();
 }
 
-function getProductFormValues(imageUrl = "") {
+function getProductFormValues(imageUrls) {
   return {
     name: elements.productName.value.trim(),
     category: elements.productCategory.value.trim(),
     description: elements.productDescription.value.trim(),
     price: Number(elements.productPrice.value),
-    ...(imageUrl ? { image_url: imageUrl } : {}),
+    image_url: imageUrls[0],
+    image_urls: imageUrls,
   };
 }
 
@@ -168,15 +198,16 @@ async function handleSaveProduct(event) {
 
   const productId = elements.productId.value;
   const isEditing = Boolean(productId);
-  const imageFile = elements.productImage.files[0];
-  if (!isEditing && !imageFile) {
-    showError(elements.adminError, "Selecciona una foto del producto.");
-    return;
-  }
+  const imageFiles = [...elements.productImage.files];
 
   try {
-    const imageUrl = imageFile ? await uploadImage(imageFile) : "";
-    const values = getProductFormValues(imageUrl);
+    const uploadedImages = imageFiles.length ? await uploadImages(imageFiles) : [];
+    const imageUrls = [...state.editingImages, ...uploadedImages];
+    if (!imageUrls.length) {
+      showError(elements.adminError, "Selecciona al menos una foto del producto.");
+      return;
+    }
+    const values = getProductFormValues(imageUrls);
     const { error } = isEditing
       ? await db.from("catalog_products").update(values).eq("id", productId)
       : await db.from("catalog_products").insert(values);
@@ -223,6 +254,12 @@ elements.adminForm.addEventListener("submit", handleSaveProduct);
 elements.cancelEditButton.addEventListener("click", () => {
   elements.adminForm.reset();
   setEditMode();
+});
+elements.currentImages.addEventListener("click", (event) => {
+  const removeButton = event.target.closest("[data-remove-image]");
+  if (!removeButton) return;
+  state.editingImages.splice(Number(removeButton.dataset.removeImage), 1);
+  renderCurrentImages();
 });
 elements.refreshProductsButton.addEventListener("click", loadProducts);
 elements.adminProductList.addEventListener("click", (event) => {

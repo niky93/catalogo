@@ -7,12 +7,13 @@ const hasSupabase =
   !config.supabaseUrl.includes("TU-PROYECTO");
 const db = hasSupabase ? window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey) : null;
 
-const state = { products: [] };
+const state = { previewImages: [], products: [] };
 const elements = {
   categoryFilter: document.querySelector("#category-filter"),
   emptyState: document.querySelector("#empty-state"),
   headerWhatsapp: document.querySelector("#header-whatsapp"),
   imageDialog: document.querySelector("#image-dialog"),
+  imageGallery: document.querySelector("#image-gallery"),
   imagePreview: document.querySelector("#image-preview"),
   imagePreviewTitle: document.querySelector("#image-preview-title"),
   productGrid: document.querySelector("#product-grid"),
@@ -46,13 +47,18 @@ function buildWhatsappUrl(productName = "") {
 }
 
 function normalizeProduct(product) {
+  const imageUrls = Array.isArray(product.image_urls) ? product.image_urls.filter(Boolean) : [];
+  const primaryImage = product.imagen || product.image_url || "";
+  if (primaryImage && !imageUrls.includes(primaryImage)) imageUrls.unshift(primaryImage);
+
   return {
     id: product.id || product.nombre,
     nombre: product.nombre || product.name,
     categoria: product.categoria || product.category || "",
     precio: Number(product.precio ?? product.price ?? 0),
     descripcion: product.descripcion || product.description || "",
-    imagen: product.imagen || product.image_url || "",
+    imagen: imageUrls[0] || "",
+    imagenes: imageUrls,
   };
 }
 
@@ -101,9 +107,9 @@ function renderProducts() {
     .map(
       (product) => `
         <article class="product-card">
-          <button class="product-image" type="button" data-image="${escapeHtml(product.imagen)}" data-name="${escapeHtml(product.nombre)}">
+          <button class="product-image" type="button" data-product-id="${escapeHtml(product.id)}">
             <img src="${escapeHtml(product.imagen)}" alt="${escapeHtml(product.nombre)}" loading="lazy" />
-            <span>Ver foto grande</span>
+            <span>${product.imagenes.length > 1 ? `Ver ${product.imagenes.length} fotos` : "Ver foto grande"}</span>
           </button>
           <div class="product-body">
             <span class="category">${escapeHtml(product.categoria)}</span>
@@ -123,10 +129,32 @@ function renderProducts() {
   elements.emptyState.hidden = filteredProducts.length > 0;
 }
 
-function openImagePreview(button) {
-  elements.imagePreview.src = button.dataset.image;
-  elements.imagePreview.alt = button.dataset.name;
-  elements.imagePreviewTitle.textContent = button.dataset.name;
+function selectPreviewImage(index) {
+  const imageUrl = state.previewImages[index];
+  if (!imageUrl) return;
+  elements.imagePreview.src = imageUrl;
+  elements.imageGallery.querySelectorAll("[data-gallery-index]").forEach((button) => {
+    button.classList.toggle("is-selected", Number(button.dataset.galleryIndex) === index);
+  });
+}
+
+function openImagePreview(productId) {
+  const product = state.products.find((item) => String(item.id) === productId);
+  if (!product) return;
+  state.previewImages = product.imagenes;
+  elements.imagePreview.alt = product.nombre;
+  elements.imagePreviewTitle.textContent = product.nombre;
+  elements.imageGallery.innerHTML = product.imagenes
+    .map(
+      (imageUrl, index) => `
+        <button type="button" data-gallery-index="${index}" aria-label="Ver foto ${index + 1}">
+          <img src="${escapeHtml(imageUrl)}" alt="" />
+        </button>
+      `,
+    )
+    .join("");
+  elements.imageGallery.hidden = product.imagenes.length <= 1;
+  selectPreviewImage(0);
   elements.imageDialog.showModal();
 }
 
@@ -134,8 +162,12 @@ elements.headerWhatsapp.href = buildWhatsappUrl();
 elements.searchInput.addEventListener("input", renderProducts);
 elements.categoryFilter.addEventListener("change", renderProducts);
 elements.productGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-image]");
-  if (button) openImagePreview(button);
+  const button = event.target.closest("[data-product-id]");
+  if (button) openImagePreview(button.dataset.productId);
+});
+elements.imageGallery.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-gallery-index]");
+  if (button) selectPreviewImage(Number(button.dataset.galleryIndex));
 });
 document.querySelectorAll("[data-close-dialog]").forEach((button) => {
   button.addEventListener("click", () => document.querySelector(`#${button.dataset.closeDialog}`).close());
